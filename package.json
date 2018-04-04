@@ -1,0 +1,70 @@
+{
+  "name": "freighthub-code-challenge",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/src/index.js",
+  "typings": "dist/src/index.d.ts",
+  "engines": {
+    "node": ">=9.6.0",
+    "yarn": ">=1.5.1"
+  },
+  "scripts": {
+    "build": "tsc --rootDir ./ -p tsconfig.json",
+    "build:watch": "tsc -w",
+    "build:test": "tsc --rootDir ./ -p tsconfig.test.json",
+    "circular": "madge --circular dist/",
+    "complexity": "./node_modules/.bin/ts-complexity --max-complexity=20  --pattern './{src,bin}/**/*.ts'",
+    "clean": "rm -fr dist",
+    "coverage": "TZ=UTC jest --coverage --no-cache",
+    "coverage:watch": "yarn coverage --watch",
+    "lint": "tslint -p .",
+    "postinstall": "yarn build",
+    "prebuild": "yarn clean",
+    "pretest": "yarn lint && yarn build:test",
+    "start": "node --harmony index.js",
+    "test": "TZ=UTC jest",
+    "test:watch": "yarn test --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freight-hub/freighthub-code-challenge.git"
+  },
+  "description": "Code Challenge for FreightHub",
+  "author": "FreightHub GmbH",
+  "keywords": [],
+  "dependencies": {
+    "typescript": "^2.7.2",
+    "typescript-eslint-parser": "^14.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.1.3",
+    "@types/node": "^9.4.6",
+    "jest": "~22.4.0",
+    "madge": "^3.0.1",
+    "ts-complexity": "0.0.3",
+    "ts-jest": "^22.0.4",
+    "tslint": "^5.9.1",
+    "tslint-config-standard": "^7.0.0",
+    "typescript-eslint-parser": "^14.0.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
+    ],
+    "coverageReporters": [
+      "text",
+      "html"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  }
+}
